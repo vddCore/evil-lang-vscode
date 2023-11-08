@@ -1,0 +1,29 @@
+{
+  "name": "evil-lang",
+  "displayName": "EVIL",
+  "description": "EVIL Language Support for Visual Studio Code",
+  "version": "1.0.0",
+  "repository": {
+    "type":"git",
+    "url": "https://github.com/vddCore/evil-lang-vscode"
+  },
+  "engines": {
+    "vscode": "^1.84.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "contributes": {
+    "languages": [{
+      "id": "evil",
+      "aliases": ["EVIL", "evil"],
+      "extensions": [".vil"],
+      "configuration": "./language-configuration.json"
+    }],
+    "grammars": [{
+      "language": "evil",
+      "scopeName": "source.evil",
+      "path": "./syntaxes/evil.tmLanguage.json"
+    }]
+  }
+}

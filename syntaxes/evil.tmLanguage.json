@@ -1,0 +1,341 @@
+{
+    "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+    "name": "EVIL",
+    "fileTypes": [ ".vil" ],
+    "foldingStartMarker": "\\{",
+    "foldingEndMarker": "\\}",
+    "patterns": [
+        {
+            "include": "#comments"
+        },
+        {
+            "include": "#preprocessor"
+        },
+        {
+            "include": "#self"
+        },
+        {
+            "include": "#anon_functions"
+        },
+        {
+            "include": "#keywords"
+        },
+        {
+            "include": "#operators"
+        },
+        {
+            "include": "#numbers"
+        },
+        {
+            "include": "#constants"
+        },
+        {
+            "include": "#functions"
+        },
+        {
+            "include": "#valdefs"
+        },
+        {
+            "include": "#types"
+        },
+        {
+            "include": "#overrides"
+        },
+        {
+            "include": "#double_quoted_strings"
+        },
+        {
+            "include": "#single_quoted_strings"
+        }
+    ],
+    "repository": {
+        "preprocessor": {
+            "patterns": [
+                {
+                    "match": "\\#include\\b",
+                    "name":"keyword.control.import.evil"
+                },
+                {
+                    "match": "(?<=#include)\\s+(\"(.*?)\"|'(.*?)')$",
+                    "name":"meta.preprocessor.string.evil"
+                }
+            ]
+        },
+
+        "self":{ 
+            "patterns": [
+                {
+                    "match": "\\b(self)(::)(fn)\\b",
+                    "captures": {
+                        "1": { "name": "entity.name.type.evil" },
+                        "2": { "name": "entity.name.class.evil" },
+                        "3": { "name": "keyword.other.evil" }
+                    }
+                }
+            ]
+        },
+
+        "anon_functions": {
+            "patterns": [
+                {
+                    "match": "(fn)\\s*?\\(.*?\\) ",
+                    "captures": {
+                        "1": { "name": "keyword.other.evil" }
+                    }
+                }
+            ]
+        },
+
+        "operators": {
+            "patterns": [
+                {
+                    "match": "(.*?)\\.\\s*?([\\w]+)\\s*?(\\()",
+                    "captures": {
+                        "2": { "name": "entity.name.function" }
+                    }
+                },
+                {
+                    "match": "\\:\\:",
+                    "name": "entity.name.class.evil"
+                },
+                {
+                    "match": "\\b(\\w+)(::)(\\w+)\\b",
+                    "captures": {
+                        "1": { "name": "entity.name.type.evil" },
+                        "2": { "name": "entity.name.class.evil" },
+                        "3": { "name": "entity.name.function.evil" }
+                    }
+                },
+                {
+                    "match": "\\s*?(::)(\\s*?)(\\w+)\\b",
+                    "captures": {
+                        "1": { "name": "entity.name.class.evil" },
+                        "3": { "name": "entity.name.function.evil" }
+                    }
+                },
+                {
+                    "match": "([\\w_]+)\\(.*?\\)",
+                    "captures": {
+                        "1": { "name": "entity.name.function.evil" }
+                    }
+                },
+                {
+                    "begin": "(yield)\\<",
+                    "beginCaptures": { 
+                        "1": { "name": "keyword.other.evil" }
+                    },
+                    "end": "\\>"
+                },
+                {
+                    "begin": "(\\#\\[)",
+                    "beginCaptures": {
+                        "1": { "name": "keyword.control.evil" }
+                    },
+                    "end": "(\\])",
+                    "endCaptures": {
+                        "1": { "name": "keyword.control.evil" }
+                    },
+                    "patterns": [
+                        {
+                            "begin": "([A-Za-z_])",
+                            "beginCaptures": {
+                                "1": { "name": "keyword.other.evil" }
+                            },
+                            "end": "(?=\\b)",
+                            "contentName": "keyword.other.evil"
+                        },
+                        {
+                            "include": "#numbers"
+                        },
+                        {
+                            "include": "#constants"
+                        },
+                        {
+                            "include": "#double_quoted_strings"
+                        },                                
+                        {
+                            "include": "#single_quoted_strings"
+                        }
+                    ]
+                }
+            ]
+        },
+
+        "numbers": {
+            "patterns": [
+                {
+                    "match": "\\b(\\d+)\\b",
+                    "name": "constant.numeric.integer.evil"
+                },
+                {
+                    "match": "\\b(\\d+)?\\.(\\d+)\\b",
+                    "name": "constant.numeric.decimal.evil"
+                },
+                {
+                    "match": "\\b0x[A-Fa-f0-9]{1,16}\\b",
+                    "name": "constant.numeric.hex.evil"
+                }
+            ]
+        },
+
+        "functions": {
+            "patterns": [
+                {
+                    "begin": "\\b(fn)\\b",
+                    "beginCaptures": {
+                        "1": { "name": "keyword.other.evil" }
+                    },
+                    "end": "(?=\\()",
+                    "patterns": [
+                        {
+                            "match": "^[A-Za-z_][A-Za-z0-9_]+",
+                            "name": "entity.name.function.evil"
+                        },
+                        {
+                            "match": "(?<=fn)\\s+[A-Za-z_][A-Za-z0-9_]+",
+                            "name": "entity.name.function.evil"
+                        }
+                    ]
+                }
+            ]
+        },
+
+        "valdefs": {
+            "patterns": [
+                {
+                    "begin": "\\b(val)\\b",
+                    "beginCaptures": {
+                        "1": { "name": "keyword.other.evil "}
+                    },
+                    "end": "(?=(\\=|\\:|\\;))",
+                    "contentName": "variable.name.evil"
+                }
+            ]
+        },
+
+        "keywords": {
+            "patterns": [
+                {
+                    "match": "\\b(break|do|each|elif|else|for|if|ret|skip|while)\\b",
+                    "name": "keyword.control.evil"
+                },
+                {
+                    "match": "\\b(override|yield|array|self)\\b",
+                    "name": "keyword.other.evil"
+                },
+                {
+                    "match": "\\b(\\!in|in|is|\\!is|typeof)\\b",
+                    "name": "keyword.other.evil"
+                },
+                {
+                    "match": "\\b(rw)\\b",
+                    "name": "storage.modifier.rw.evil"
+                }
+            ]
+        },
+
+        "types": {
+            "patterns": [
+                {
+                    "match": "\\b(Array|Boolean|Fiber|Function|NativeFunction|NativeObject|Nil|Number|String|Table|Type)\\b",
+                    "name": "entity.name.type.evil"
+                }
+            ]
+        },
+
+        "constants": {
+            "patterns": [
+                {
+                    "match": "\\b(nil|false|true|Infinity|NaN)\\b",
+                    "name": "keyword.other.evil"
+                }
+            ]
+        },
+
+        "overrides": {
+            "patterns": [
+                {
+                    "match": "\\b(__add|__sub|__mul|__div|__mod|__aneg|__dec|__inc)\\b",
+                    "name": "entity.name.function.override.arithmetic.evil"
+                },
+                {
+                    "match": "\\b(__band|__bnot|__bor|__bxor|__shl|__shr)\\b",
+                    "name": "entity.name.function.override.bitwise.evil"
+                },
+                {
+                    "match": "\\b(__lnot|__land|__lor)\\b",
+                    "name": "entity.name.function.override.logical.evil"
+                },
+                {
+                    "match": "\\b(__deq|__dne|__eq|__ne)\\b",
+                    "name": "entity.name.function.override.equality.evil"
+                },
+                {
+                    "match": "\\b(__gt|__lt|__gte|__lte)\\b",
+                    "name": "entity.name.function.override.comparison.evil"
+                },
+                {
+                    "match": "\\b(__get|__set)\\b",
+                    "name": "entity.name.function.override.indexing.evil"
+                },
+                {
+                    "match": "\\b(__exists|__len)\\b",
+                    "name": "entity.name.function.override.utility.evil"
+                },
+                {
+                    "match": "\\b(__tonum|__tostr)\\b",
+                    "name": "entity.name.function.override.conversion.evil"
+                },
+                {
+                    "match": "\\b(__invoke)\\b",
+                    "name": "entity.name.function.override.invocation.evil"
+                }
+            ]
+        },
+        
+        "double_quoted_strings": {
+            "begin": "\"",
+            "end": "\"",
+            "patterns": [
+                {
+                    "name": "constant.character.escape.evil",
+                    "match": "\\\\."
+                }
+            ],
+            "name": "string.quoted.double.evil"
+        },
+
+        "single_quoted_strings": {
+            "begin": "'",
+            "end": "'",
+            "patterns": [
+                {
+                    "name": "constant.character.escape.evil",
+                    "match": "\\\\."
+                }
+            ],
+            "name": "string.quoted.single.evil"
+        },
+
+        "comments": {
+            "patterns": [
+                {
+                    "name": "comment.line",
+                    "match": "\\/\\/.*"
+                },
+                {
+                    "begin": "(\\/\\*)",
+                    "beginCaptures": {
+                        "1": { "name": "comment.block" }
+                    },
+                    "end": "(\\*\\/)",
+                    "endCaptures": {
+                        "1": { "name": "comment.block" }
+                    },
+                    "contentName": "comment.block"
+                }
+            ]
+        }
+    },
+    "scopeName": "source.evil"
+}
