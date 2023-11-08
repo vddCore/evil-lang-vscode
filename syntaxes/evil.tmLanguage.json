@@ -12,10 +12,10 @@
             "include": "#preprocessor"
         },
         {
-            "include": "#structural_characters"
+            "include": "#numbers"
         },
         {
-            "include": "#numbers"
+            "include": "#structural_characters"
         },
         {
             "include": "#constants"

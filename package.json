@@ -25,10 +25,22 @@
       "extensions": [".vil"],
       "configuration": "./language-configuration.json"
     }],
-    "grammars": [{
-      "language": "evil",
-      "scopeName": "source.evil",
-      "path": "./syntaxes/evil.tmLanguage.json"
-    }]
+    "grammars": [
+        {
+            "language": "evil",
+            "scopeName": "source.evil",
+            "path": "./syntaxes/evil.tmLanguage.json"
+        },
+        {
+            "scopeName": "markdown.evil.codeblock",
+            "path": "./syntaxes/codeblock.json",
+            "injectTo": [
+                "text.html.markdown"
+            ],
+            "embeddedLanguages": {
+                "meta.embedded.block.superjs": "evil"
+            }
+        }
+    ]
   }
 }
