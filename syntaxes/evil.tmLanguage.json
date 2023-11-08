@@ -79,15 +79,19 @@
         "numbers": {
             "patterns": [
                 {
-                    "match": "\\b(\\d+)\\b",
+                    "match": "[\\-\\+]?\\b(\\d+)\\b",
                     "name": "constant.numeric.integer.evil"
                 },
                 {
-                    "match": "\\b(\\d+)?\\.(\\d+)\\b",
+                    "match": "[\\-\\+]?\\b(\\d+)\\.(\\d+)\\b",
                     "name": "constant.numeric.decimal.evil"
                 },
                 {
-                    "match": "\\b0x[A-Fa-f0-9]{1,16}\\b",
+                    "match": "[\\-\\+]?\\.\\b(\\d+)\\b",
+                    "name": "constant.numeric.decimal.evil"
+                },
+                {
+                    "match": "0x[A-Fa-f0-9]{1,16}",
                     "name": "constant.numeric.hex.evil"
                 }
             ]
