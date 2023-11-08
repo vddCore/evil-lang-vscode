@@ -2,10 +2,15 @@
   "name": "evil-lang",
   "displayName": "EVIL",
   "description": "EVIL Language Support for Visual Studio Code",
-  "version": "1.0.0",
+  "version": "1.1.0",
+  "publisher": "vddCore",
   "repository": {
     "type":"git",
     "url": "https://github.com/vddCore/evil-lang-vscode"
+  },
+  "icon": "images/evil_logo.png",
+  "galleryBanner": {
+    "color": "#2B2B3C"
   },
   "engines": {
     "vscode": "^1.84.0"
