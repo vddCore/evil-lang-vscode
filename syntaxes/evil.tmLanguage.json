@@ -62,6 +62,12 @@
                 },
                 {
                     "match": "(?<=#include)\\s+(\"(.*?)\"|'(.*?)')$",
+                    "captures": {
+                        "0": { "name": "meta.preprocessor.string.evil" },
+                        "1": { "patterns": [{
+                            "include": "#strings"
+                        }]}
+                    },
                     "name":"meta.preprocessor.string.evil"
                 }
             ]
