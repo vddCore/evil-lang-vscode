@@ -1,38 +1,24 @@
 {
     "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
     "name": "EVIL",
+    
     "fileTypes": [ ".vil" ],
+    
     "foldingStartMarker": "\\{",
     "foldingEndMarker": "\\}",
+
     "patterns": [
-        {
-            "include": "#comments"
-        },
-        {
-            "include": "#preprocessor"
-        },
-        {
-            "include": "#numbers"
-        },
-        {
-            "include": "#structural_characters"
-        },
-        {
-            "include": "#constants"
-        },
-        {
-            "include": "#strings"
-        },
-        {
-            "include": "#keywords"
-        },
-        {
-            "include": "#types"
-        },
-        {
-            "include": "#overrides"
-        }
+        { "include": "#comments" },
+        { "include": "#preprocessor" },
+        { "include": "#numbers" },
+        { "include": "#structural_characters" },
+        { "include": "#constants" },
+        { "include": "#strings" },
+        { "include": "#keywords" },
+        { "include": "#types" },
+        { "include": "#overrides" }
     ],
+
     "repository": {
         "comments": {
             "patterns": [
@@ -73,15 +59,6 @@
             ]
         },
 
-        "structural_characters": {
-            "patterns": [
-                {
-                    "match": "(\\!|\\#|\\$|\\%|\\&|\\*|\\+|\\/|\\,|\\-|\\.|\\:|\\;|\\<|\\=|\\>|\\?|\\@|\\^|\\||\\~)",
-                    "name": "keyword.operator"
-                }
-            ]
-        },
-
         "numbers": {
             "patterns": [
                 {
@@ -99,6 +76,24 @@
                 {
                     "match": "0x[A-Fa-f0-9]{1,16}",
                     "name": "constant.numeric.hex.evil"
+                }
+            ]
+        },
+
+        "structural_characters": {
+            "patterns": [
+                {
+                    "match": "(\\!|\\#|\\$|\\%|\\&|\\*|\\+|\\/|\\,|\\-|\\.|\\:|\\;|\\<|\\=|\\>|\\?|\\@|\\^|\\||\\~)",
+                    "name": "keyword.operator"
+                }
+            ]
+        },
+
+        "constants": {
+            "patterns": [
+                {
+                    "match": "\\b(nil|false|true|Infinity|NaN)\\b",
+                    "name": "keyword.other.evil"
                 }
             ]
         },
@@ -156,15 +151,6 @@
                 {
                     "match": "\\b(Array|Boolean|Fiber|Function|NativeFunction|NativeObject|Nil|Number|String|Table|Type)\\b",
                     "name": "entity.name.type.evil"
-                }
-            ]
-        },
-
-        "constants": {
-            "patterns": [
-                {
-                    "match": "\\b(nil|false|true|Infinity|NaN)\\b",
-                    "name": "keyword.other.evil"
                 }
             ]
         },
