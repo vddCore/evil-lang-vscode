@@ -20,6 +20,7 @@ jobs:
         node-version: '>=20.9.0'
         check-latest: true
         cache: 'npm'
+        cache-dependency-path: 'package.json'
 
     - name: Install VSCE
       run: npm install -g @vscode/vsce
