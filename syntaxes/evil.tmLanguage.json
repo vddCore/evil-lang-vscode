@@ -8,34 +8,35 @@
     "foldingEndMarker": "\\}",
 
     "patterns": [
-        { "include": "#comments" },
-        { "include": "#builtins" },
-        { "include": "#numbers" },
-        { "include": "#structural_characters" },
-        { "include": "#constants" },
-        { "include": "#strings" },
-        { "include": "#keywords" },
-        { "include": "#types" },
-        { "include": "#overrides" }
+      { "include": "#comments" },
+      { "include": "#builtins" },
+      { "include": "#numbers" },
+      { "include": "#structural_characters" },
+      { "include": "#constants" },
+      { "include": "#strings" },
+      { "include": "#keywords" },
+      { "include": "#types" },
+      { "include": "#overrides" },
+      { "include": "#indexing" }
     ],
 
     "repository": {
         "comments": {
             "patterns": [
                 {
-                    "name": "comment.line",
-                    "match": "\\/\\/.*"
+                  "match": "\\/\\/.*",
+                  "name": "comment.line.evil"
                 },
                 {
                     "begin": "(\\/\\*)",
                     "beginCaptures": {
-                        "1": { "name": "comment.block" }
+                        "1": { "name": "comment.block.evil" }
                     },
                     "end": "(\\*\\/)",
                     "endCaptures": {
-                        "1": { "name": "comment.block" }
+                        "1": { "name": "comment.block.evil" }
                     },
-                    "contentName": "comment.block"
+                    "contentName": "comment.block.evil"
                 }
             ]
         },
@@ -184,7 +185,18 @@
                     "name": "entity.name.function.override.invocation.evil"
                 }
             ]
+        },
+
+        "indexing": {
+          "patterns": [
+            {
+              "name": "entity.name.function.evil",
+              "begin": "(([\\p{L}_][\\p{L}\\p{Nd}_]+)(?=\\.))",
+              "end": "(?=\\.)"
+            }
+          ]
         }
     },
+
     "scopeName": "source.evil"
 }
