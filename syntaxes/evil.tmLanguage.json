@@ -98,6 +98,10 @@
                         {
                             "name": "constant.character.escape.evil",
                             "match": "\\\\."
+                        },
+                        {
+                          "name": "entity.name.class.evil",
+                          "match": "\\$[\\p{L}_]([\\p{L}\\p{Nd}_]+)?"
                         }
                     ],
                     "name": "string.quoted.double.evil"
