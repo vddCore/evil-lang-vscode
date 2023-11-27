@@ -191,7 +191,7 @@
           "patterns": [
             {
               "name": "entity.name.function.evil",
-              "begin": "(([\\p{L}_][\\p{L}\\p{Nd}_]?)+(?=\\.))",
+              "begin": "(([\\p{L}_][\\p{L}\\p{Nd}_]?)+(\\s?)+(?=\\.))(\\s?)+",
               "end": "(?=\\.)"
             }
           ]
