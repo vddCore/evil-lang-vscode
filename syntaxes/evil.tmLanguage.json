@@ -1,38 +1,24 @@
 {
     "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
     "name": "EVIL",
+    
     "fileTypes": [ ".vil" ],
+    
     "foldingStartMarker": "\\{",
     "foldingEndMarker": "\\}",
+
     "patterns": [
-        {
-            "include": "#comments"
-        },
-        {
-            "include": "#preprocessor"
-        },
-        {
-            "include": "#numbers"
-        },
-        {
-            "include": "#structural_characters"
-        },
-        {
-            "include": "#constants"
-        },
-        {
-            "include": "#strings"
-        },
-        {
-            "include": "#keywords"
-        },
-        {
-            "include": "#types"
-        },
-        {
-            "include": "#overrides"
-        }
+        { "include": "#comments" },
+        { "include": "#builtins" },
+        { "include": "#numbers" },
+        { "include": "#structural_characters" },
+        { "include": "#constants" },
+        { "include": "#strings" },
+        { "include": "#keywords" },
+        { "include": "#types" },
+        { "include": "#overrides" }
     ],
+
     "repository": {
         "comments": {
             "patterns": [
@@ -54,30 +40,11 @@
             ]
         },
 
-        "preprocessor": {
+        "builtins": {
             "patterns": [
                 {
-                    "match": "\\#include\\b",
+                    "match": "\\b(dofile|require)\\b",
                     "name":"keyword.control.import.evil"
-                },
-                {
-                    "match": "(?<=#include)\\s+(\"(.*?)\"|'(.*?)')$",
-                    "captures": {
-                        "0": { "name": "meta.preprocessor.string.evil" },
-                        "1": { "patterns": [{
-                            "include": "#strings"
-                        }]}
-                    },
-                    "name":"meta.preprocessor.string.evil"
-                }
-            ]
-        },
-
-        "structural_characters": {
-            "patterns": [
-                {
-                    "match": "(\\!|\\#|\\$|\\%|\\&|\\*|\\+|\\/|\\,|\\-|\\.|\\:|\\;|\\<|\\=|\\>|\\?|\\@|\\^|\\||\\~)",
-                    "name": "keyword.operator"
                 }
             ]
         },
@@ -99,6 +66,24 @@
                 {
                     "match": "0x[A-Fa-f0-9]{1,16}",
                     "name": "constant.numeric.hex.evil"
+                }
+            ]
+        },
+
+        "structural_characters": {
+            "patterns": [
+                {
+                    "match": "(\\!|\\#|\\$|\\%|\\&|\\*|\\+|\\/|\\,|\\-|\\.|\\:|\\;|\\<|\\=|\\>|\\?|\\@|\\^|\\||\\~)",
+                    "name": "keyword.operator"
+                }
+            ]
+        },
+
+        "constants": {
+            "patterns": [
+                {
+                    "match": "\\b(nil|false|true|Infinity|NaN)\\b",
+                    "name": "keyword.other.evil"
                 }
             ]
         },
@@ -145,7 +130,7 @@
                     "name": "keyword.other.evil"
                 },
                 {
-                    "match": "\\b(rw)\\b",
+                    "match": "\\b(rw|loc)\\b",
                     "name": "storage.modifier.rw.evil"
                 }
             ]
@@ -156,15 +141,6 @@
                 {
                     "match": "\\b(Array|Boolean|Fiber|Function|NativeFunction|NativeObject|Nil|Number|String|Table|Type)\\b",
                     "name": "entity.name.type.evil"
-                }
-            ]
-        },
-
-        "constants": {
-            "patterns": [
-                {
-                    "match": "\\b(nil|false|true|Infinity|NaN)\\b",
-                    "name": "keyword.other.evil"
                 }
             ]
         },
