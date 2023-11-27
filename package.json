@@ -23,7 +23,11 @@
       "id": "evil",
       "aliases": ["EVIL", "evil"],
       "extensions": [".vil"],
-      "configuration": "./language-configuration.json"
+      "configuration": "./language-configuration.json",
+      "icon": {
+        "light": "./images/evil_file.png",
+        "dark": "./images/evil_file.png"
+      }
     }],
     "grammars": [
         {
