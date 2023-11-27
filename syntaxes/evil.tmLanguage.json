@@ -9,7 +9,7 @@
 
     "patterns": [
         { "include": "#comments" },
-        { "include": "#preprocessor" },
+        { "include": "#builtins" },
         { "include": "#numbers" },
         { "include": "#structural_characters" },
         { "include": "#constants" },
@@ -40,21 +40,11 @@
             ]
         },
 
-        "preprocessor": {
+        "builtins": {
             "patterns": [
                 {
-                    "match": "\\#include\\b",
+                    "match": "\\b(dofile|require)\\b",
                     "name":"keyword.control.import.evil"
-                },
-                {
-                    "match": "(?<=#include)\\s+(\"(.*?)\"|'(.*?)')$",
-                    "captures": {
-                        "0": { "name": "meta.preprocessor.string.evil" },
-                        "1": { "patterns": [{
-                            "include": "#strings"
-                        }]}
-                    },
-                    "name":"meta.preprocessor.string.evil"
                 }
             ]
         },
@@ -140,7 +130,7 @@
                     "name": "keyword.other.evil"
                 },
                 {
-                    "match": "\\b(rw)\\b",
+                    "match": "\\b(rw|loc)\\b",
                     "name": "storage.modifier.rw.evil"
                 }
             ]
