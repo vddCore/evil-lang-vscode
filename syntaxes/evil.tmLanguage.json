@@ -118,7 +118,7 @@
         "keywords": {
             "patterns": [
                 {
-                    "match": "\\b(break|do|each|elif|else|for|if|ret|skip|while)\\b",
+                    "match": "\\b(break|by|do|each|elif|else|for|if|ret|skip|while)\\b",
                     "name": "keyword.control.evil"
                 },
                 {
