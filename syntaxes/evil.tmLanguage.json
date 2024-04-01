@@ -6,7 +6,7 @@
     
     "foldingStartMarker": "\\{",
     "foldingEndMarker": "\\}",
-
+    
     "patterns": [
         { "include": "#comments" },
         { "include": "#builtins" },
@@ -16,9 +16,10 @@
         { "include": "#strings" },
         { "include": "#keywords" },
         { "include": "#types" },
-        { "include": "#overrides" }
+        { "include": "#overrides" },
+        { "include": "#indexing" }
     ],
-
+    
     "repository": {
         "comments": {
             "patterns": [
@@ -39,7 +40,7 @@
                 }
             ]
         },
-
+        
         "builtins": {
             "patterns": [
                 {
@@ -48,7 +49,7 @@
                 }
             ]
         },
-
+        
         "numbers": {
             "patterns": [
                 {
@@ -69,7 +70,7 @@
                 }
             ]
         },
-
+        
         "structural_characters": {
             "patterns": [
                 {
@@ -78,7 +79,7 @@
                 }
             ]
         },
-
+        
         "constants": {
             "patterns": [
                 {
@@ -87,7 +88,7 @@
                 }
             ]
         },
-
+        
         "strings": {
             "patterns": [
                 {
@@ -97,6 +98,10 @@
                         {
                             "name": "constant.character.escape.evil",
                             "match": "\\\\."
+                        },
+                        {
+                            "name": "constant.regexp.evil",
+                            "match": "\\$[A-Za-z_]([A-Za-z0-9_]+)?"
                         }
                     ],
                     "name": "string.quoted.double.evil"
@@ -114,11 +119,11 @@
                 }
             ]
         },
-
+        
         "keywords": {
             "patterns": [
                 {
-                    "match": "\\b(break|by|do|each|elif|else|for|if|ret|skip|while)\\b",
+                    "match": "\\b(break|by|catch|do|each|elif|else|for|if|ret|skip|throw|try|break|while)\\b",
                     "name": "keyword.control.evil"
                 },
                 {
@@ -135,7 +140,7 @@
                 }
             ]
         },
-
+        
         "types": {
             "patterns": [
                 {
@@ -144,7 +149,7 @@
                 }
             ]
         },
-
+        
         "overrides": {
             "patterns": [
                 {
@@ -184,7 +189,40 @@
                     "name": "entity.name.function.override.invocation.evil"
                 }
             ]
+        },
+        
+        "indexing": {
+            "patterns": [
+                {
+                    "match": "(([A-Za-z_]([A-Za-z0-9_]+)?)\\.)+",
+                    "captures": {
+                        "0": { 
+                            "patterns": [
+                                {   
+                                    "match": "[A-Za-z0-9_]+",
+                                    "name": "entity.name.class.evil"
+                                }
+                            ]
+                        }
+                    }
+                },
+
+                {
+                    "match": "([A-Za-z_]([A-Za-z0-9_]+)?)(\\s+)?\\(.?\\)",
+                    "captures": {
+                        "1": { 
+                            "patterns": [
+                                {   
+                                    "match": "[A-Za-z0-9_]+",
+                                    "name": "entity.name.function.evil"
+                                }
+                            ]
+                        }
+                    }
+                }
+            ]
         }
     },
+
     "scopeName": "source.evil"
 }
