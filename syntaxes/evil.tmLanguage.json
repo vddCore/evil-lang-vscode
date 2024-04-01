@@ -20,7 +20,7 @@
         { "include": "#indexing" }
     ],
     
-    "repository": {
+    "repository": {        
         "comments": {
             "patterns": [
                 {
@@ -123,7 +123,7 @@
         "keywords": {
             "patterns": [
                 {
-                    "match": "\\b(break|by|catch|do|each|elif|else|for|if|ret|skip|throw|try|break|while)\\b",
+                    "match": "\\b(break|by|catch|do|each|elif|else|for|if|ret|skip|throw|try|typeof|break|while)\\b",
                     "name": "keyword.control.evil"
                 },
                 {
@@ -190,7 +190,7 @@
                 }
             ]
         },
-        
+
         "indexing": {
             "patterns": [
                 {
@@ -208,7 +208,7 @@
                 },
 
                 {
-                    "match": "([A-Za-z_]([A-Za-z0-9_]+)?)(\\s+)?\\(.?\\)",
+                    "match": "([A-Za-z_]([A-Za-z0-9_]+)?)(\\s+)?\\(",
                     "captures": {
                         "1": { 
                             "patterns": [
