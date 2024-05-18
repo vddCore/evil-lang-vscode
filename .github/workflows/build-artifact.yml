@@ -2,9 +2,10 @@ name: Build EVIL Language Support Extension
 
 on:
   push:
-    branches: [ "dev" ]
+    branches: [ "master" ]
   pull_request:
     branches: [ "master" ]
+  workflow_dispatch:
 
 jobs:
   build:
