@@ -127,7 +127,7 @@
                     "name": "keyword.control.evil"
                 },
                 {
-                    "match": "\\b(fn|val|override|yield|array|self)\\b",
+                    "match": "\\b(fn|val|yield|array|self)\\b",
                     "name": "keyword.other.evil"
                 },
                 {
@@ -144,7 +144,7 @@
         "types": {
             "patterns": [
                 {
-                    "match": "\\b(Array|Boolean|Fiber|Function|NativeFunction|NativeObject|Nil|Number|String|Table|Type)\\b",
+                    "match": "\\b(Array|Boolean|Fiber|Function|NativeFunction|NativeObject|Nil|Number|String|Table|Type|Error)\\b",
                     "name": "entity.name.type.evil"
                 }
             ]
