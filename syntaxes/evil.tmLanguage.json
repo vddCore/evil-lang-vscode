@@ -123,7 +123,7 @@
         "keywords": {
             "patterns": [
                 {
-                    "match": "\\b(break|by|catch|do|each|elif|else|for|if|ret|skip|throw|try|typeof|break|while)\\b",
+                    "match": "\\b(break|by|catch|do|each|elif|else|for|if|ret|retry|skip|throw|try|typeof|break|while)\\b",
                     "name": "keyword.control.evil"
                 },
                 {
